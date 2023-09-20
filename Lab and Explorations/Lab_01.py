@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 
+# Import data from txt files
 with open("../data/datapoints.txt", "r") as f:
     data = f.readlines()[1:]
     datapoints = [(float(point.split(",")[0]), float(point.split(",")[1]), int(point.split(",")[2])) for point in data]
@@ -24,5 +25,11 @@ def classify(point):
 # Classify the testpoints from the file
 results = [classify(testpoint) for testpoint in testpoints]
 
-results
+# Generate the output for each test point
+output_strings = []
+for testpoint, result in zip(testpoints, results):
+    classification = "Pikachu" if result == 1 else "Pichu"
+    output_strings.append(f"Sample with (width, height): {testpoint} classified as {classification}")
+
+output_strings
 
