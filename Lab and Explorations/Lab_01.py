@@ -1,11 +1,11 @@
 import matplotlib.pyplot as plt
 
 # Import data from txt files
-with open("../data/datapoints.txt", "r") as f:
+with open("../../data/datapoints.txt", "r") as f:
     data = f.readlines()[1:]
     datapoints = [(float(point.split(",")[0]), float(point.split(",")[1]), int(point.split(",")[2])) for point in data]
 
-with open("../data/testpoints.txt", "r") as f:
+with open("../../data/testpoints.txt", "r") as f:
     data = f.readlines()[1:]
     testpoints = [(float(point.split(",")[0].split("(")[1]), float(point.split(",")[1].split(")")[0])) for point in data]
 
