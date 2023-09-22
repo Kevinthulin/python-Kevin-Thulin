@@ -22,20 +22,20 @@ def read_datapoints(datapoint):
 #  Split the in three and convret them in to floats or int
 def process_data_points(point):   
     x, y, label = point.split(",")
-    return float(x), float(y), int(label)
+    return float(x), float(y), int(label) #took insparation from https://stackoverflow.com/questions/63428080/efficient-way-to-split-and-map-float-function-on-a-string-of-points
 
 # Read in the testpoints from a txt file and skip header
 def read_testpoints(testpoints):
     with open(testpoints, "r") as f:
         data = f.readlines()[1:]
-    return [process_test_point(point) for point in data]
+    return [process_test_point(point) for point in data] 
 
 # split testoints into two and start with ( and ends with )
 def process_test_point(point):
     x_str, y_str = point.split(",")
     x = float(x_str.split("(")[1])
     y = float(y_str.split(")")[0])
-    return x, y
+    return x, y # #took insparation from https://stackoverflow.com/questions/63428080/efficient-way-to-split-and-map-float-function-on-a-string-of-points
 
 # Function to calculate distance between 2 points
 def distance(p1, p2):
