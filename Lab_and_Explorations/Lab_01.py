@@ -30,7 +30,7 @@ def read_testpoints(testpoints):
         data = f.readlines()[1:]
     return [process_test_point(point) for point in data] 
 
-# split testoints into two and start with ( and ends with )
+# split testpoints into two and start with ( and ends with )
 def process_test_point(point):
     x_str, y_str = point.split(",")
     x = float(x_str.split("(")[1])
