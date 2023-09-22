@@ -4,11 +4,11 @@ def input_from_user():
     while True:
         try:
             height = float(input("Enter height: "))
-            weight = float(input("Enter weight: "))
-            if height <= 0 or weight <= 0:
+            wight = float(input("Enter wight: "))
+            if height <= 0 or wight <= 0:
                 print("Enter a positive number for both height and wight")
                 continue
-            return height, weight
+            return height, wight
         except ValueError:
             print("Enter a number!")
         
@@ -37,7 +37,7 @@ def process_test_point(point):
     y = float(y_str.split(")")[0])
     return x, y
 
-# Function to calculate distance
+# Function to calculate distance between 2 points
 def distance(p1, p2):
     return ((p1[0] - p2[0]) ** 2 + (p1[1] - p2[1]) ** 2) ** 0.5
 
@@ -50,10 +50,14 @@ def classify(point):
     pikachus = 10 - pichus
     return 0 if pichus > pikachus else 1
 
+# Import and assign data from txt files to variables
 testpoints = read_testpoints("testpoints.txt")
 datapoints = read_datapoints("datapoints.txt")
+
+# Runs input throught classify function
 user_points = input_from_user()
 result = classify(user_points)
+
 # Classify the testpoints from the file
 results = [classify(testpoint) for testpoint in testpoints]
 
@@ -63,8 +67,8 @@ for testpoint, result in zip(testpoints, results):
     classification = "Pikachu" if result == 1 else "Pichu"
     output_strings.append(f"Sample with (width, height): {testpoint} classified as {classification}")
 
-
-print("\n".join(output_strings))
-
 classification = "Pikachu" if result == 1 else "Pichu"
+
+# Prints the results
+print("\n".join(output_strings))
 print(f"Sample with (width, height): {user_points} and classified as {classification}")
