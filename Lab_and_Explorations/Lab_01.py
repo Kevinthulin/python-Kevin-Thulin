@@ -1,5 +1,5 @@
 # Promt the user with widght and height.
-# Return the corrdiantes as a tuples of floats
+# Return the corrdinates as a tuples of floats
 def input_from_user():
     while True:
         try:
@@ -67,8 +67,10 @@ for testpoint, result in zip(testpoints, results):
     classification = "Pikachu" if result == 1 else "Pichu"
     output_strings.append(f"Sample with (width, height): {testpoint} classified as {classification}")
 
-classification = "Pikachu" if result == 1 else "Pichu"
-
-# Prints the results
+# Prints the results of the testpoints.txt file
 print("\n".join(output_strings))
+
+print("\n")
+# Prints the results of the input
+classification = "Pikachu" if result == 1 else "Pichu"
 print(f"Sample with (width, height): {user_points} and classified as {classification}")
