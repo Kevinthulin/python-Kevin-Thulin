@@ -44,7 +44,7 @@ def distance(p1, p2):
 # Function to classify a point
 def classify(point):
     distances = [(distance(point, datapoint), datapoint[2]) for datapoint in datapoints]
-    distances.sort(key=lambda x: x[0])
+    distances.sort(key=lambda x: x[0]) # inspartion from here https://stackoverflow.com/questions/16310015/what-does-this-mean-key-lambda-x-x1
     nearest_10 = distances[:10]
     pichus = sum(1 for d in nearest_10 if d[1] == 0)
     pikachus = 10 - pichus
@@ -65,7 +65,7 @@ results = [classify(testpoint) for testpoint in testpoints]
 output_strings = []
 for testpoint, result in zip(testpoints, results):
     classification = "Pikachu" if result == 1 else "Pichu"
-    output_strings.append(f"Sample with (width, height): {testpoint} classified as {classification}")
+    output_strings.append(f"Test samples with (width, height): {testpoint} classified as {classification}")
 
 # Prints the results of the testpoints.txt file
 print("\n".join(output_strings))
@@ -73,4 +73,6 @@ print("\n".join(output_strings))
 print("\n")
 # Prints the results of the input
 classification = "Pikachu" if result == 1 else "Pichu"
-print(f"Sample with (width, height): {user_points} and classified as {classification}")
+print(f"Your sample with (width, height): {user_points} is classified as {classification}")
+
+print("\n")
