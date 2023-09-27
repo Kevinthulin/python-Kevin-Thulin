@@ -1,3 +1,5 @@
+import matplotlib.pyplot as plt
+
 # Promt the user with widght and height.
 # Return the corrdinates as a tuples of floats
 def input_from_user():
@@ -76,3 +78,26 @@ classification = "Pikachu" if result == 1 else "Pichu"
 print(f"Your sample with (width, height): {user_points} is classified as {classification}")
 
 print("\n")
+
+def data_plots(datapoints, testpoints, user_input, results):
+    pichus = [point for point, label in zip(datapoints, [point[2] for point in datapoints]) if label == 0]
+    pikachus = [point for point, label in zip (datapoints, [point[2] for point in datapoints]) if label == 1]
+
+    test_pichus = [point for point, label in zip(testpoints, results) if label == 0]
+    test_pikachus = [point for point, label in zip (testpoints, results) if label == 1]
+
+    plt.scatter([point[0] for point in pichus], [point[1] for point in pichus], color='red', label='Pichu Training')
+    plt.scatter([point[0] for point in pikachus], [point[1] for point in pikachus], color='blue', label='Pikachu Training')
+    plt.scatter([point[0] for point in test_pichus], [point[1] for point in test_pichus], color='yellow', marker='x', label='Pichu Test')
+    plt.scatter([point[0] for point in test_pikachus], [point[1] for point in test_pikachus], color='cyan', marker='x', label='Pikachu Test')
+    plt.scatter(user_points[0], user_points[1], color='green', marker='o', s=200, edgecolors='black', label='User Input')
+
+    plt.legend(loc='upper right')
+    plt.xlabel('Width')
+    plt.ylabel('Height')
+    plt.title('Classification of Pokemon based on Size')
+    plt.grid(True)
+    plt.show()
+
+# Plot the points
+data_plots(datapoints, testpoints, user_points, results)
