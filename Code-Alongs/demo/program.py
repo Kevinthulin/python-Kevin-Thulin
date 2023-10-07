@@ -1,13 +1,24 @@
-thornback_tortoise = 178
-tortoise = 108
-blood_crab = 184
+import random
 
-task_tort = 350 + 700 + 1700
-task_thorn_tort = 350 + 700 + 1700
-task_blood_crab = 350 + 700 + 1700
 
-task_1 = thornback_tortoise * task_thorn_tort
-task_2 = tortoise * task_tort
-task_3 = blood_crab * task_blood_crab
 
-print(task_1 + task_2 + task_3)
+
+def dice(throws):
+    outcomes = []
+    diced_rolled = {
+        1: 0,
+        2: 0,
+        3: 0,
+        4: 0,
+        5: 0,
+        6: 0
+    }
+    for _ in range(throws):
+        roll = random.randint(1, 6)
+        outcomes.append(roll)
+        diced_rolled[roll] += 1
+    return diced_rolled
+
+        
+
+print(dice(100000))
