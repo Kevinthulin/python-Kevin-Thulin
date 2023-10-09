@@ -67,9 +67,19 @@ class Circle(Shape):
             return True
         else:
             return False
+        
+    def __repr__(self):
+        return (f"Circle: x = {self.x}, y = {self.y} and radius = {self.area}")
+    
+    def is_unit_cricle(self):
+        if self.x == 0 and self.y == 0 and self.radius == 1:
+            return "this is a unit_cricle"
+        return
     
 class Rectangle(Shape):
     def __init__(self, x, y, length, width):
+        if not (isinstance(x, (int, float)) and isinstance(y, (int, float))):
+            raise ValueError("x and y must be numbers:")
         self.x = x
         self.y = y
         self.length = length
@@ -89,14 +99,21 @@ class Rectangle(Shape):
             return True
         else:
             return False
+        
+    def __repr__(self):
+        return (f"Rectangle: x = {self.x}, y = {self.y}, Length: = {self.length} and width = {self.width}")
 
+    def is_square(self):
+        if self.length == self.width:
+            return "This is square"
+        
 
 
 
 try:
     # Step 1: Create Instances
-    circle1 = Circle(x=0, y=0, radius=3)
-    circle2 = Circle(x=1, y=1, radius=1)
+    circle1 = Circle(x="yo", y="ye", radius=2)
+    circle2 = Circle(x=1, y=1, radius=2)
     rectangle = Rectangle(x=0, y=0, length=8, width=8)
     
     # Step 2: Test __str__ Method
@@ -116,7 +133,7 @@ try:
     # Step 4: Test Operator Overloading
     print("Operator Overloading:")
     print("Is circle1 == circle2?", circle1 == circle2)
-    print("Is circle1 < rectangle?", circle1 < rectangle)
+    print("Is circle1 < rectangle?", circle1 < circle2)
     print("Is circle1 > rectangle?", circle1 > rectangle)
     print()
     
