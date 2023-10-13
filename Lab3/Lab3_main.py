@@ -78,6 +78,9 @@ class Sphere(Shapes3D):
     @property
     def volume(self):
         return 4/3 * math.pi * (self.radius ** 3)
+    
+    def aft(self):
+        ...
 
 class Cube(Shapes3D):
     def __init__(self, x, y, z, side_length):
