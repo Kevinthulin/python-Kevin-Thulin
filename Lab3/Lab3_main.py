@@ -12,6 +12,13 @@ class Shape:
         for arg in args:
             if not isinstance(arg, (int, float)):
                 raise ValueError (f"{arg} must be an int or floats")
+            
+    def positive_number(self, *nums):
+        for num in nums:
+            if not isinstance(num, (int, float)):
+                raise ValueError(f"{num} must be a int or float")
+            if num <= 0:
+                raise ValueError(f"{num} must be a positive number")
     
     def same_type(self, other):
         return isinstance(other, Shape)
@@ -20,17 +27,7 @@ class Shapes3D(Shape):
     def __init__(self, x, y, z):
         super().__init__(x, y)
         self.z = z
-        
-    def check_coordinates(self, x, y ,z):
-        super().check_coordinates(x, y)
-        if not isinstance(z, (int, float)):
-            raise ValueError("z must be a number")
-        
-    def error_value(self):
-        super().numeric_value()
-        if not isinstance(self.z, (int, float)):
-            raise ValueError("z must be an interger")
-        
+        self.numeric_value(x, z, y)
         
     def __eq__(self, other):
         if self.same_type(other):
@@ -58,7 +55,7 @@ class Shapes3D(Shape):
         return NotImplemented
     
     def translate(self, dx, dy, dz):
-        self.error_value(dx, dy, dz)
+        self.numeric_value(dx, dy, dz)
         self.x += dx
         self.y += dy
         self.z += dz
@@ -67,7 +64,8 @@ class Sphere(Shapes3D):
     def __init__(self, x, y, z, radius):
         super().__init__(x, y, z)
         self.radius = radius
-        self.check_coordinates(x, y, z)
+        self.numeric_value(radius
+        )
     
     @property
     def volume(self):
@@ -84,7 +82,7 @@ class Cube(Shapes3D):
     def __init__(self, x, y, z, side_length):
         super().__init__(x, y, z)
         self.side_length = side_length
-        self.check_coordinates(x, y, z)
+        self.numeric_value(side_length)
     
     @property 
     def volume(self):
@@ -100,7 +98,7 @@ class Cube(Shapes3D):
 class Shapes2D(Shape):
     def __init__(self, x, y):
         super().__init__(x, y)
-        self.numeric_value()
+        self.numeric_value(x, y)
     
     def __eq__(self, other):
         if self.same_type(other):
@@ -135,7 +133,6 @@ class Shapes2D(Shape):
 class Circle(Shapes2D):
     def __init__(self, x, y, radius):
         super().__init__(x, y)
-        self.check_coordinates(x, y)
         self.radius = radius
         self.numeric_value(x, y)
     
@@ -167,7 +164,6 @@ class Circle(Shapes2D):
 class Rectangle(Shapes2D):
     def __init__(self, x, y, length, width):
         super().__init__(x, y)
-        self.check_coordinates(x, y)
         self.length = length
         self.width = width
         self.numeric_value(x, y)
