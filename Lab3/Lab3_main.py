@@ -178,10 +178,14 @@ class Rectangle(Shapes2D):
         self.length = length
         self.width = width
         self.error_value()
-
+        
     @property
     def area(self):
         return self.width * self.length
+
+    @property
+    def circumference(self):
+        return self.width + self.width + self.length + self.length
     
     def __str__(self):
         return f"Area of rectangle is {self.area:.2f} at postion x:{self.x} and y:{self.y}"
@@ -191,6 +195,7 @@ class Rectangle(Shapes2D):
             return True
         else:
             return False
+        
         
     def __repr__(self):
         return (f"Rectangle: x = {self.x}, y = {self.y}, Length: = {self.length} and width = {self.width}")
