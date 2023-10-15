@@ -92,19 +92,19 @@ class Cube(Shapes3D):
         self.side_length = side_length
         self._side_length = None
     
-    @property 
-    def volume(self):
-        return self.side_length ** 3
-
     @property
     def side_length(self):
         return self._side_length
 
-    @volume.setter
+    @side_length.setter
     def side_length(self, value):
         self.validate_positive_numbers(value)
         self._side_length = value
     
+    @property 
+    def volume(self):
+        return self.side_length ** 3
+
     def is_inside(self, px, py, pz):
         if abs(self.x - px) < self.side_length/2 and abs(self.y - py) < self.side_length/2 and abs(self.z - pz) < self.side_length/2:
             return True
