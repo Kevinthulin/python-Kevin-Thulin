@@ -8,54 +8,54 @@ class Shape:
     def __str__(self):
         return f"(Shape centred at {self.y} and {self.x})"
     
-    def numeric_value(self, *args):
+    def validate_numeric_value(self, *args):
         for arg in args:
             if not isinstance(arg, (int, float)):
                 raise ValueError (f"{arg} must be an int or floats")
             
-    def positive_number(self, *nums):
+    def validate_positive_numbers(self, *nums):
         for num in nums:
             if not isinstance(num, (int, float)):
                 raise ValueError(f"{num} must be a int or float")
             if num <= 0:
                 raise ValueError(f"{num} must be a positive number")
     
-    def same_type(self, other):
+    def same_metric_value(self, other):
         return isinstance(other, Shape)
 
 class Shapes3D(Shape):
     def __init__(self, x, y, z):
         super().__init__(x, y)
         self.z = z
-        self.numeric_value(x, z, y)
+        self.validate_numeric_value(x, y, z)
         
     def __eq__(self, other):
-        if self.same_type(other):
+        if self.same_metric_value(other):
              return self.volume == other.volume
         return False
     
     def __lt__(self, other):
-        if self.same_type(other):
+        if self.same_metric_value(other):
             return self.volume < other.volume
         return NotImplemented
     
     def __gt__(self, other):
-        if self.same_type(other):
+        if self.same_metric_value(other):
             return self.volume > other.volume
         return NotImplemented
     
     def __le__(self, other):
-        if self.same_type(other):
+        if self.same_metric_value(other):
             return self.volume <= other.volume
         return NotImplemented
     
     def __ge__(self, other):
-        if self.same_type(other):
+        if self.same_metric_value(other):
             return self.volume >= other.volume
         return NotImplemented
     
     def translate(self, dx, dy, dz):
-        self.numeric_value(dx, dy, dz)
+        self.validate_numeric_value(dx, dy, dz)
         self.x += dx
         self.y += dy
         self.z += dz
@@ -64,8 +64,8 @@ class Sphere(Shapes3D):
     def __init__(self, x, y, z, radius):
         super().__init__(x, y, z)
         self.radius = radius
-        self.numeric_value(radius
-        )
+        self.validate_numeric_value(x, y, z)
+        self.validate_positive_numbers(radius)
     
     @property
     def volume(self):
@@ -82,7 +82,8 @@ class Cube(Shapes3D):
     def __init__(self, x, y, z, side_length):
         super().__init__(x, y, z)
         self.side_length = side_length
-        self.numeric_value(side_length)
+        self.validate_numeric_value(x, y, z)
+        self.validate_positive_numbers(side_length)
     
     @property 
     def volume(self):
@@ -98,35 +99,35 @@ class Cube(Shapes3D):
 class Shapes2D(Shape):
     def __init__(self, x, y):
         super().__init__(x, y)
-        self.numeric_value(x, y)
+        self.validate_numeric_value(x, y)
     
     def __eq__(self, other):
-        if self.same_type(other):
+        if self.same_metric_value(other):
              return self.area == other.area
         return False
     
     def __lt__(self, other):
-        if self.same_type(other):
+        if self.same_metric_value(other):
             return self.area < other.area
         return NotImplemented
     
     def __gt__(self, other):
-        if self.same_type(other):
+        if self.same_metric_value(other):
             return self.area > other.area
         return NotImplemented
     
     def __le__(self, other):
-        if self.same_type(other):
+        if self.same_metric_value(other):
             return self.area <= other.area
         return NotImplemented
     
     def __ge__(self, other):
-        if self.same_type(other):
+        if self.same_metric_value(other):
             return self.area >= other.area
         return NotImplemented
     
     def translate(self, dx, dy):
-        self.numeric_value(dx, dy)
+        self.validate_numeric_value(dx, dy)
         self.x += dx
         self.y += dy
 
@@ -134,7 +135,8 @@ class Circle(Shapes2D):
     def __init__(self, x, y, radius):
         super().__init__(x, y)
         self.radius = radius
-        self.numeric_value(x, y)
+        self.validate_numeric_value(x, y)
+        self.validate_positive_numbers(radius)
     
     @property
     def area(self):
@@ -166,7 +168,8 @@ class Rectangle(Shapes2D):
         super().__init__(x, y)
         self.length = length
         self.width = width
-        self.numeric_value(x, y)
+        self.validate_numeric_value(x, y)
+        self.validate_positive_numbers(length, width)
 
     @property
     def area(self):
