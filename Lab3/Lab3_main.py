@@ -64,8 +64,16 @@ class Sphere(Shapes3D):
     def __init__(self, x, y, z, radius):
         super().__init__(x, y, z)
         self.radius = radius
-        self.validate_numeric_value(x, y, z)
-        self.validate_positive_numbers(radius)
+        self._radius = None
+
+    @property
+    def radius(self):
+        return self._radius
+    
+    @radius.setter
+    def radius(self, value):
+        self.validate_positive_numbers(value)
+        self._radius = value
     
     @property
     def volume(self):
@@ -82,12 +90,20 @@ class Cube(Shapes3D):
     def __init__(self, x, y, z, side_length):
         super().__init__(x, y, z)
         self.side_length = side_length
-        self.validate_numeric_value(x, y, z)
-        self.validate_positive_numbers(side_length)
+        self._side_length = None
     
     @property 
     def volume(self):
         return self.side_length ** 3
+
+    @property
+    def side_length(self):
+        return self._side_length
+
+    @volume.setter
+    def side_length(self, value):
+        self.validate_positive_numbers(value)
+        self._side_length = value
     
     def is_inside(self, px, py, pz):
         if abs(self.x - px) < self.side_length/2 and abs(self.y - py) < self.side_length/2 and abs(self.z - pz) < self.side_length/2:
@@ -135,7 +151,6 @@ class Circle(Shapes2D):
     def __init__(self, x, y, radius):
         super().__init__(x, y)
         self.radius = radius
-        self.validate_numeric_value(x, y)
         self.validate_positive_numbers(radius)
     
     @property
@@ -168,7 +183,6 @@ class Rectangle(Shapes2D):
         super().__init__(x, y)
         self.length = length
         self.width = width
-        self.validate_numeric_value(x, y)
         self.validate_positive_numbers(length, width)
 
     @property
