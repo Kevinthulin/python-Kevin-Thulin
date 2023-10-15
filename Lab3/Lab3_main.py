@@ -151,8 +151,17 @@ class Circle(Shapes2D):
     def __init__(self, x, y, radius):
         super().__init__(x, y)
         self.radius = radius
-        self.validate_positive_numbers(radius)
+        self._radius = None
+
+    @property
+    def radius(self):
+        return self._radius
     
+    @radius.setter
+    def radius(self, value):
+        self.validate_positive_numbers(value)
+        self._radius = value
+
     @property
     def area(self):
         return math.pi * (self.radius ** 2)
@@ -183,7 +192,26 @@ class Rectangle(Shapes2D):
         super().__init__(x, y)
         self.length = length
         self.width = width
-        self.validate_positive_numbers(length, width)
+        self._length = None
+        self._width = None
+
+    @property
+    def length(self):
+        return self._length
+    
+    @length.setter
+    def length(self, value):
+        self.validate_positive_numbers(value)
+        self._length = value
+
+    @property
+    def width(self):
+        return self._width
+    
+    @width.setter
+    def width(self, value):
+        self.validate_positive_numbers(value)
+        self._width = value  
 
     @property
     def area(self):
