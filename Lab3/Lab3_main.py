@@ -8,15 +8,10 @@ class Shape:
     def __str__(self):
         return f"(Shape centred at {self.y} and {self.x})"
     
-    def error_value(self, *args):
+    def numeric_value(self, *args):
         for arg in args:
             if not isinstance(arg, (int, float)):
                 raise ValueError (f"{arg} must be an int or floats")
-        
-    def check_coordinates(self, *coordi):
-        for coord in coordi:
-            if not isinstance(coord, (int, float)):
-                raise ValueError("Coordinates must be int or floats")
     
     def same_type(self, other):
         return isinstance(other, Shape)
@@ -32,7 +27,7 @@ class Shapes3D(Shape):
             raise ValueError("z must be a number")
         
     def error_value(self):
-        super().error_value()
+        super().numeric_value()
         if not isinstance(self.z, (int, float)):
             raise ValueError("z must be an interger")
         
@@ -105,7 +100,7 @@ class Cube(Shapes3D):
 class Shapes2D(Shape):
     def __init__(self, x, y):
         super().__init__(x, y)
-        self.error_value()
+        self.numeric_value()
     
     def __eq__(self, other):
         if self.same_type(other):
@@ -133,8 +128,7 @@ class Shapes2D(Shape):
         return NotImplemented
     
     def translate(self, dx, dy):
-        if not (isinstance(dx, (int, float)) and isinstance(dy, (int, float))):
-            raise ValueError("dx and dy must be numbers")
+        self.numeric_value(dx, dy)
         self.x += dx
         self.y += dy
 
@@ -143,7 +137,7 @@ class Circle(Shapes2D):
         super().__init__(x, y)
         self.check_coordinates(x, y)
         self.radius = radius
-        self.error_value(x, y)
+        self.numeric_value(x, y)
     
     @property
     def area(self):
@@ -176,7 +170,7 @@ class Rectangle(Shapes2D):
         self.check_coordinates(x, y)
         self.length = length
         self.width = width
-        self.error_value(x, y)
+        self.numeric_value(x, y)
 
     @property
     def area(self):
