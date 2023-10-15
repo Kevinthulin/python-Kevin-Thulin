@@ -33,7 +33,7 @@ class Shapes3D(Shape):
         
     def error_value(self):
         super().error_value()
-        if not isinstance(self.z (int, float)):
+        if not isinstance(self.z, (int, float)):
             raise ValueError("z must be an interger")
         
         
@@ -79,8 +79,12 @@ class Sphere(Shapes3D):
     def volume(self):
         return 4/3 * math.pi * (self.radius ** 3)
     
-    def aft(self):
-        ...
+    def is_inside(self, px, py, pz):
+        if (px - self.x) ** 2 + (py - self.y)** 2 + (pz - self.z)** 2 < self.radius ** 2:
+            return True
+        else:
+            return False
+    
 
 class Cube(Shapes3D):
     def __init__(self, x, y, z, side_length):
@@ -91,6 +95,12 @@ class Cube(Shapes3D):
     @property 
     def volume(self):
         return self.side_length ** 3
+    
+    def is_inside(self, px, py, pz):
+        if abs(self.x - px) < self.side_length/2 and abs(self.y - py) < self.side_length/2 and abs(self.z - pz) < self.side_length/2:
+            return True
+        else:
+            return False
             
         
 class Shapes2D(Shape):
