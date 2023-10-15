@@ -8,15 +8,15 @@ class Shape:
     def __str__(self):
         return f"(Shape centred at {self.y} and {self.x})"
     
-    def error_value(self):
-        if not isinstance(self.x, (int, float)):
-            raise ValueError("x must be a number")
-        if not isinstance(self.y, (int, float)):
-            raise ValueError("y must be a number")
+    def error_value(self, *args):
+        for arg in args:
+            if not isinstance(arg, (int, float)):
+                raise ValueError (f"{arg} must be an int or floats")
         
-    def check_coordinates(self, x, y):
-        if not (isinstance(x, (int, float)) and isinstance(y, (int, float))):
-            raise ValueError("Coordinates must be intergers or flots")
+    def check_coordinates(self, *coordi):
+        for coord in coordi:
+            if not isinstance(coord, (int, float)):
+                raise ValueError("Coordinates must be int or floats")
     
     def same_type(self, other):
         return isinstance(other, Shape)
@@ -63,8 +63,7 @@ class Shapes3D(Shape):
         return NotImplemented
     
     def translate(self, dx, dy, dz):
-        if not (isinstance(dx, (int, float)) and isinstance(dy, (int, float)) and isinstance(dz, (int, float))):
-            raise ValueError("dx, dy and dz must be numbers")
+        self.error_value(dx, dy, dz)
         self.x += dx
         self.y += dy
         self.z += dz
@@ -144,7 +143,7 @@ class Circle(Shapes2D):
         super().__init__(x, y)
         self.check_coordinates(x, y)
         self.radius = radius
-        self.error_value()
+        self.error_value(x, y)
     
     @property
     def area(self):
@@ -177,8 +176,8 @@ class Rectangle(Shapes2D):
         self.check_coordinates(x, y)
         self.length = length
         self.width = width
-        self.error_value()
-        
+        self.error_value(x, y)
+
     @property
     def area(self):
         return self.width * self.length
@@ -195,8 +194,7 @@ class Rectangle(Shapes2D):
             return True
         else:
             return False
-        
-        
+          
     def __repr__(self):
         return (f"Rectangle: x = {self.x}, y = {self.y}, Length: = {self.length} and width = {self.width}")
 
