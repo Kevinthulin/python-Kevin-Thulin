@@ -8,12 +8,14 @@ class Shape:
     def __str__(self):
         return f"(Shape centred at {self.y} and {self.x})"
     
-    def validate_numeric_value(self, *args):
+    @staticmethod
+    def validate_numeric_value(*args):
         for arg in args:
             if not isinstance(arg, (int, float)):
                 raise ValueError (f"{arg} must be an int or floats")
             
-    def validate_positive_numbers(self, *nums):
+    @staticmethod        
+    def validate_positive_numbers(*nums):
         for num in nums:
             if not isinstance(num, (int, float)):
                 raise ValueError(f"{num} must be a int or float")
@@ -64,7 +66,6 @@ class Sphere(Shapes3D):
     def __init__(self, x, y, z, radius):
         super().__init__(x, y, z)
         self.radius = radius
-        self._radius = None
 
     @property
     def radius(self):
@@ -90,7 +91,6 @@ class Cube(Shapes3D):
     def __init__(self, x, y, z, side_length):
         super().__init__(x, y, z)
         self.side_length = side_length
-        self._side_length = None
     
     @property
     def side_length(self):
@@ -151,7 +151,6 @@ class Circle(Shapes2D):
     def __init__(self, x, y, radius):
         super().__init__(x, y)
         self.radius = radius
-        self._radius = None
 
     @property
     def radius(self):
@@ -192,8 +191,6 @@ class Rectangle(Shapes2D):
         super().__init__(x, y)
         self.length = length
         self.width = width
-        self._length = None
-        self._width = None
 
     @property
     def length(self):
