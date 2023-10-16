@@ -10,12 +10,14 @@ class Shape:
     
     @staticmethod
     def validate_numeric_value(*args):
+        """Validate that all arguments are numeric."""
         for arg in args:
             if not isinstance(arg, (int, float)):
                 raise ValueError (f"{arg} must be an int or floats")
             
     @staticmethod        
     def validate_positive_numbers(*nums):
+        """Validate that all numbers are positive."""
         for num in nums:
             if not isinstance(num, (int, float)):
                 raise ValueError(f"{num} must be a int or float")
@@ -143,6 +145,7 @@ class Shapes2D(Shape):
         return NotImplemented
     
     def translate(self, dx, dy):
+        """Translate the shape by dx, dy along the x and y axis."""
         self.validate_numeric_value(dx, dy)
         self.x += dx
         self.y += dy
@@ -173,6 +176,7 @@ class Circle(Shapes2D):
         return f"Area of the circle is {self.area:.2f} and the circumference is {self.circumference:.2f} at postion x:{self.x} and y:{self.y}"
     
     def is_inside(self, px, py):
+        """Check if a point is inside the circle."""
         if (px - self.x) ** 2 + (py - self.y)** 2 < self.radius ** 2:
             return True
         else:
@@ -222,6 +226,7 @@ class Rectangle(Shapes2D):
         return f"Area of rectangle is {self.area:.2f} at postion x:{self.x} and y:{self.y}"
     
     def is_inside(self, px, py):
+        """Check if a point is inside the rectangle."""
         if abs(self.x - px) < self.length/2 and abs(self.y - py) < self.width/2:
             return True
         else:
