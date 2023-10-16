@@ -1,83 +1,114 @@
 from Lab3_main import Shape, Sphere, Cube, Circle, Rectangle
 import math
 
-# Initialize Shape objects
-shape1 = Shape(2, 3)
-shape2 = Shape(5, 5)
+def test_Sphere():
+    sphere1 = Sphere(0, 0, 0, 1)
+    sphere2 = Sphere(0, 0, 0, 2)
+    
 
-# Test Shape attributes
-assert shape1.x == 2
-assert shape1.y == 3
+    # Test volume
+    assert math.isclose(sphere1.volume, 4/3 * math.pi, rel_tol=1e-9) # https://peps.python.org/pep-0485/
+    assert math.isclose(sphere2.volume, 4/3 * math.pi * 8, rel_tol=1e-9) # https://peps.python.org/pep-0485/
 
-# Test Sphere objects
-sphere1 = Sphere(0, 0, 0, 1)
-sphere2 = Sphere(0, 0, 0, 2)
+    # Test equality and inequality
+    assert sphere1 != sphere2
+    assert not sphere1 == sphere2
 
-# Test Sphere volume
-assert math.isclose(sphere1.volume, 4/3 * math.pi, rel_tol=1e-9)
-assert math.isclose(sphere2.volume, 4/3 * math.pi * 8, rel_tol=1e-9)
+    # Test ordering
+    assert sphere1 < sphere2
+    assert not sphere1 > sphere2
 
-# Test Sphere equality
-assert not sphere1 == sphere2
+    # Test is_inside method
+    assert sphere1.is_inside(0, 0, 0)
+    assert not sphere1.is_inside(1, 1, 1)
 
-# Test Sphere ordering
-assert sphere1 < sphere2
-assert not sphere1 > sphere2
+    # Test translations
+    sphere1.translate(1, 1, 1)
+    assert sphere1.x == 1 and sphere1.y == 1 and sphere1.z == 1
 
-# Test Cube objects
-cube1 = Cube(0, 0, 0, 2)
-cube2 = Cube(0, 0, 0, 3)
+    print("Sphere tests passed!")
 
-# Test Cube volume
-assert cube1.volume == 8
-assert cube2.volume == 27
+def test_Cube():
+    cube1 = Cube(0, 0, 0, 2)
+    cube2 = Cube(0, 0, 0, 3)
 
-# Test Cube equality
-assert not cube1 == cube2
+    # Test volume
+    assert cube1.volume == 8
+    assert cube2.volume == 27
 
-# Test Cube ordering
-assert cube1 < cube2
-assert not cube1 > cube2
+    # Test equality and inequality
+    assert cube1 != cube2
+    assert not cube1 == cube2
 
-# Initialize Circle objects
-circle1 = Circle(0, 0, 1)
-circle2 = Circle(0, 0, 2)
+    # Test ordering
+    assert cube1 < cube2
+    assert not cube1 > cube2
 
-# Test Circle area and circumference
-assert math.isclose(circle1.area, math.pi, rel_tol=1e-9)
-assert math.isclose(circle1.circumference, 2 * math.pi, rel_tol=1e-9)
+    # Test is_inside method
+    assert cube1.is_inside(0, 0, 0)
+    assert not cube1.is_inside(2, 2, 2)
 
-# Test Circle equality and ordering
-assert not circle1 == circle2
-assert circle1 < circle2
-assert not circle1 > circle2
+    print("Cube tests passed!")
 
-# Initialize Rectangle objects
-rectangle1 = Rectangle(0, 0, 2, 4)
-rectangle2 = Rectangle(0, 0, 3, 3)
+def test_Circle():
+    cir1 = Circle(0, 0, 1)
+    cir2 = Circle(0, 0, 2)
 
-# Test Rectangle area
-assert rectangle1.area == 8
-assert rectangle2.area == 9
+    # Test area and circumference
+    assert math.isclose(cir1.area, math.pi, rel_tol=1e-9) # https://peps.python.org/pep-0485/
+    assert math.isclose(cir1.circumference, 2 * math.pi, rel_tol=1e-9) # https://peps.python.org/pep-0485/
 
-# Test Rectangle equality and ordering
-assert not rectangle1 == rectangle2
-assert rectangle1 < rectangle2
-assert not rectangle1 > rectangle2
+    # Test equality and inequality
+    assert cir1 != cir2
+    assert not cir1 == cir2
 
-# Test translations
+    # Test ordering
+    assert cir1 < cir2
+    assert not cir1 > cir2
 
-sphere1.translate(1, 1, 1)
-assert sphere1.x == 1
-assert sphere1.y == 1
-assert sphere1.z == 1
+    # Test is_inside method
+    assert cir1.is_inside(0, 0)
+    assert not cir1.is_inside(2, 2)
 
-circle1.translate(1, 1)
-assert circle1.x == 1
-assert circle1.y == 1
+    # Test translations
+    cir1.translate(1, 1)
+    assert cir1.x == 1 and cir1.y == 1
 
-rectangle1.translate(1, 1)
-assert rectangle1.x == 1
-assert rectangle1.y == 1
+    print("Circle tests passed!")
 
-print("All tests passed!")
+def test_Rectangle():
+    rectangle1 = Rectangle(0, 0, 2, 4)
+    rectangle2 = Rectangle(0, 0, 3, 3)
+
+    # Test area
+    assert rectangle1.area == 8
+    assert rectangle2.area == 9
+
+    # Test equality and inequality
+    assert rectangle1 != rectangle2
+    assert not rectangle1 == rectangle2
+
+    # Test ordering
+    assert rectangle1 < rectangle2
+    assert not rectangle1 > rectangle2
+
+    # Test is_inside method
+    assert rectangle1.is_inside(0, 0)
+    assert not rectangle1.is_inside(2, 2)
+
+    # Test translations
+    rectangle1.translate(1, 1)
+    assert rectangle1.x == 1 and rectangle1.y == 1
+
+    print("Rectangle tests passed!")
+
+def main():
+    test_Sphere()
+    test_Cube()
+    test_Circle()
+    test_Rectangle()
+    print("All tests passed!")
+
+if __name__ == "__main__":
+    main()
+
