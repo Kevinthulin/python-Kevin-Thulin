@@ -1,5 +1,4 @@
 
-
 class Shape:
     def __init__(self, x ,y):
         self.x = x
@@ -17,7 +16,7 @@ class Shape:
             
     @staticmethod        
     def validate_positive_numbers(*nums):
-        """Validate that all numbers are positive."""
+        """Validate that all numbers are positive and numbers."""
         for num in nums:
             if not isinstance(num, (int, float)):
                 raise ValueError(f"{num} must be a int or float")
