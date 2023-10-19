@@ -5,6 +5,7 @@ import math
 def test_Sphere():
     sphere1 = Sphere(0, 0, 0, 1)
     sphere2 = Sphere(0, 0, 0, 2)
+    sphere3 = Sphere(2, 2, 2, 5)
     
 
     # Test volume
@@ -18,14 +19,18 @@ def test_Sphere():
     # Test ordering
     assert sphere1 < sphere2
     assert not sphere1 > sphere2
+    assert sphere1 < sphere3
 
     # Test is_inside method
     assert sphere1.is_inside(0, 0, 0)
     assert not sphere1.is_inside(1, 1, 1)
+    assert not sphere3.is_inside(3, 3, 3)
 
     # Test translations
     sphere1.translate(1, 1, 1)
+    sphere3.translate(4, 4, 4)
     assert sphere1.x == 1 and sphere1.y == 1 and sphere1.z == 1
+    assert sphere3.x == 4 and sphere3.y == 4 and sphere3.z == 4
 
     print("Sphere tests passed!")
 
