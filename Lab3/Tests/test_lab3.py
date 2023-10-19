@@ -1,4 +1,5 @@
-from Lab3_main import Shape, Sphere, Cube, Circle, Rectangle
+from shapes3D import Sphere, Cube
+from shapes2D import Circle, Rectangle
 import math
 
 def test_Sphere():
