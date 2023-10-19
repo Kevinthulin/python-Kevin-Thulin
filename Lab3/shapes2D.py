@@ -120,7 +120,7 @@ class Rectangle(Shapes2D):
             return False
           
     def __repr__(self):
-        return (f"Rectangle: x = {self.x}, y = {self.y}, Length: = {self.length} and width = {self.width}")
+        return (f"Rectangle: x = {self.x}, y = {self.y}, Length: = {self.length:.2f} and width = {self.width:.2f}")
 
     def is_square(self):
         if self.length == self.width:
