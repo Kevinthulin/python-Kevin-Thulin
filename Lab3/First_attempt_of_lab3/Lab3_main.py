@@ -238,3 +238,5 @@ class Rectangle(Shapes2D):
     def is_square(self):
         if self.length == self.width:
             return "This is square"
+        
+#This is the code before i seperated them into different py files and did some small changes
