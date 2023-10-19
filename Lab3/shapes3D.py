@@ -1,7 +1,6 @@
 from Shape import Shape
 import math
 
-
 class Shapes3D(Shape):
     def __init__(self, x, y, z):
         super().__init__(x, y)
@@ -66,9 +65,6 @@ class Sphere(Shapes3D):
         else:
             return False
         
-        
-    
-
 class Cube(Shapes3D):
     def __init__(self, x, y, z, side_length):
         super().__init__(x, y, z)
