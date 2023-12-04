@@ -1,7 +1,27 @@
-## python-Kevin-Thulin
+# Programmeringskurs för Nybörjare
 
-# Introduktion
-- Kevin är jag på 28 år, mat fantast och tränings dåre samt dator "geni". Bor i göteborg och pluggar AI-programmering på IT-högskolan
+Välkommen till min Python programmerings portfolio
 
-# Lite kort om mig
-- Rest runt om i världen och jobbat på prestigefyllda restauranger såsom i Spanien, Belgien, Schweiz samt Qatar. Jag är mest intresserad av fine dining. Har spelat mycket basket under min uppväxt och är väldigt insatt i det.
+## Kursöversikt
+
+2. **Grundläggande Python**
+   - Variabler och datatyper
+   - Kontrollstrukturer (if-satser, loopar)
+
+3. **Funktioner och Moduler**
+   - Skapa och använda funktioner
+   - Importera och använda moduler
+
+4. **Datastrukturer**
+   - Listor, Tupler och Dictionaries
+   - Arbeta med datastrukturer
+
+5. **Grundläggande Projekt**
+   - Bygga enkla applikationer
+   - Tillämpa det vi lärt oss
+
+## Resurser
+
+- [Python Officiella Dokumentation](https://docs.python.org/3/)
+- [W3Schools Python Tutorial](https://www.w3schools.com/python/)
+
